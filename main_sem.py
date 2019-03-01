@@ -117,6 +117,23 @@ def write_result(model_name, pred_y):
     for i in range(start, end):
         out.write("{}\t{}\n".format(i, pred_y[i - start]))
 
+def help():
+    '''
+    打印帮助的信息： python file.py help
+    '''
+
+    print('''
+    usage : python {0} <function> [--args=value,]
+    <function> := train | test | help
+    example: 
+            python {0} train --use_gpu=False --num_epochs=3
+            python {0} test --dataset='path/to/dataset/root/'
+            python {0} help
+    avaiable args:'''.format(__file__))
+
+    from inspect import getsource
+    source = (getsource(opt.__class__))
+    print(source)
 
 if __name__ == "__main__":
     import fire
